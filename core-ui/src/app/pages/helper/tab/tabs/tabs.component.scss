@@ -1,0 +1,17 @@
+.tab-close {
+    color: gray;
+    text-align: right;
+    cursor: pointer;
+  }
+
+.nav.nav-tabs .nav-item.active a.nav-link{
+  color: #fdfdfd;
+  background-color: #6c757d;
+}
+
+
+.nav.nav-tabs .nav-item a.nav-link{
+  color: #333333;
+  border: 1px solid #fff;
+  background-color: #dcdcdc;
+  }

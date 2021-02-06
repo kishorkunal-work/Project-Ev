@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row pt-5 mt-5">
+        <div class="col-md-4 col-sm-12"></div>
+        <div class="col-md-4 col-sm-12" *ngIf="!isChangePasswordOn">
+            <div class="card p-4">
+                <div class="card-block">
+                    <div>
+                        <form [formGroup]="loginform" novalidate>
+                            <div class="form-group"
+                                [class.has-danger]="((loginform.get('email').hasError('required') || loginform.get('email').hasError('email')) && loginform.get('email').hasError('email') )&& loginform.get('email').touched">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                                    [class.form-control-danger]="loginform.get('email').hasError('required') && loginform.get('email').touched"
+                                    placeholder="Enter email">
+                                <div *ngIf="loginform.get('email').hasError('required') && loginform.get('email').touched"
+                                    class="form-control-feedback">Sorry, that email taken. Try another?</div>
+                                <div *ngIf="loginform.get('email').hasError('email') && loginform.get('email').touched && !loginform.get('email').hasError('required')"
+                                    class="form-control-feedback">That's not an email address</div>
+                            </div>
+                            <div class="form-group"
+                                [class.has-danger]="(loginform.get('password').hasError('required') || loginform.get('password').hasError('minlength')) && loginform.get('password').touched">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input formControlName="password" type="password" class="form-control"
+                                    id="exampleInputPassword1"
+                                    [class.form-control-danger]="loginform.get('password').hasError('required') && loginform.get('password').touched"
+                                    placeholder="Password">
+
+                                <div *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched"
+                                    class="form-control-feedback">Password required</div>
+
+                                <div *ngIf="loginform.get('password').hasError('minlength') && loginform.get('password').touched"
+                                    class="form-control-feedback">Minimum length is 6 characters. Add more!</div>
+                                <div class="text-right">
+                                    <a (click)="changePassword()" class="btn btn-link">change
+                                        password</a>
+                                </div>
+
+
+                            </div>
+
+                            <div class="text-center">
+                                <button class="btn btn-warning mr-2" type="submit"
+                                    (click)="onLoginSubmit()">Submit</button>
+                                <button class="btn btn-outline-warning mr-2" type="submit"
+                                    (click)="onLoginReset()">Clear
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12" *ngIf="isChangePasswordOn">
+            <div class="card p-4">
+                <div class="card-block">
+                    <div>
+                        <form [formGroup]="passwordChangeform" novalidate>
+                            <div class="form-group"
+                                [class.has-danger]="(loginform.get('oldpassword').hasError('required') || loginform.get('oldpassword').hasError('minlength')) && loginform.get('oldpassword').touched">
+                                <label for="exampleInputPassword10">Old Password</label>
+                                <input formControlName="oldpassword" type="password" class="form-control"
+                                    id="exampleInputPassword10"
+                                    [class.form-control-danger]="loginform.get('oldpassword').hasError('required') && loginform.get('oldpassword').touched"
+                                    placeholder="Old Password">
+
+                                <div *ngIf="loginform.get('oldpassword').hasError('required') && loginform.get('oldpassword').touched"
+                                    class="form-control-feedback">Old Password required</div>
+
+                                <div *ngIf="loginform.get('oldpassword').hasError('minlength') && loginform.get('oldpassword').touched"
+                                    class="form-control-feedback">Minimum length is 6 characters. Add more!</div>
+                            </div>
+                            <div class="form-group"
+                                [class.has-danger]="(loginform.get('password').hasError('required') || loginform.get('password').hasError('minlength')) && loginform.get('password').touched">
+                                <label for="exampleInputPassword11">New Password</label>
+                                <input formControlName="password" type="password" class="form-control"
+                                    id="exampleInputPassword11"
+                                    [class.form-control-danger]="loginform.get('password').hasError('required') && loginform.get('password').touched"
+                                    placeholder="New Password">
+
+                                <div *ngIf="loginform.get('password').hasError('required') && loginform.get('password').touched"
+                                    class="form-control-feedback">New Password required</div>
+
+                                <div *ngIf="loginform.get('password').hasError('minlength') && loginform.get('password').touched"
+                                    class="form-control-feedback">Minimum length is 6 characters. Add more!</div>
+                            </div>
+                            <div class="form-group"
+                                [class.has-danger]="(loginform.get('confirmpassword').hasError('required') || loginform.get('confirmpassword').hasError('minlength')) && loginform.get('confirmpassword').touched">
+                                <label for="exampleInputPassword12"> Confirm Password</label>
+                                <input formControlName="confirmpassword" type="password" class="form-control"
+                                    id="exampleInputPassword12"
+                                    [class.form-control-danger]="loginform.get('confirmpassword').hasError('required') && loginform.get('confirmpassword').touched"
+                                    placeholder="Confirm Password">
+
+                                <div *ngIf="loginform.get('confirmpassword').hasError('required') && loginform.get('confirmpassword').touched"
+                                    class="form-control-feedback">Confirm Password required</div>
+
+                                <div *ngIf="loginform.get('confirmpassword').hasError('minlength') && loginform.get('confirmpassword').touched"
+                                    class="form-control-feedback">Minimum length is 6 characters. Add more!</div>
+                            </div>
+
+                            <div class="text-center">
+                                <button class="btn btn-warning mr-2" type="submit"
+                                    (click)="onLoginSubmit()">Submit</button>
+                                <button class="btn btn-outline-warning mr-2" type="submit"
+                                    (click)="onLoginReset()">Clear
+                                </button>
+                                <button class="btn btn-outline-warning mr-2" (click)="backToLogin()">Back To login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12"></div>
+    </div>
+
+
+
+
+
+</div>

@@ -1,0 +1,99 @@
+<div class="container">
+    <div *ngIf="step === 1">
+        <div class="form-group">
+            <label>Policy Number </label>
+            <input type="number" [(ngModel)]="policynumber" class="form-control" />
+        </div>
+        <button type="button" class="btn btn-link" (click)="checkForPolicy()">Fetch</button>
+    </div>
+    <div *ngIf="step === 2">
+        <div>
+            Please confirm data before checking Eligibility:
+            <table class="table table-small table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ProductName</td>
+                        <td>{{MOCKpolicyForm.productname}}</td>
+                    </tr>
+                    <tr>
+                        <td>rcd</td>
+                        <td>{{MOCKpolicyForm.rcd}}</td>
+                    </tr>
+                    <tr>
+                        <td>premium</td>
+                        <td>{{MOCKpolicyForm.premium}}</td>
+                    </tr>
+                    <tr>
+                        <td>sa</td>
+                        <td>{{MOCKpolicyForm.sa}}</td>
+                    </tr>
+                    <tr>
+                        <td>ppt</td>
+                        <td>{{MOCKpolicyForm.ppt}}</td>
+                    </tr>
+                    <tr>
+                        <td>pt</td>
+                        <td>{{MOCKpolicyForm.pt}}</td>
+                    </tr>
+                    <tr>
+                        <td>surrendervalue</td>
+                        <td>{{MOCKpolicyForm.surrendervalue}}</td>
+                    </tr>
+                    <tr>
+                        <td>accruedrb</td>
+                        <td>{{MOCKpolicyForm.accruedrb}}</td>
+                    </tr>
+                    <tr>
+                        <td>age</td>
+                        <td>{{MOCKpolicyForm.age}}</td>
+                    </tr>
+                    <tr>
+                        <td>dob</td>
+                        <td>{{MOCKpolicyForm.dob.year}}-{{MOCKpolicyForm.month}}-{{MOCKpolicyForm.dob.day}}</td>
+                    </tr>
+                    <tr>
+                        <td>calculationdate</td>
+                        <td>{{MOCKpolicyForm.calculationdate.year}}-{{MOCKpolicyForm.calculationdate.month}}-{{MOCKpolicyForm.calculationdate.day}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>lastpremiumdate</td>
+                        <td>{{MOCKpolicyForm.lastpremiumdate.year}}-{{MOCKpolicyForm.lastpremiumdate.month}}-{{MOCKpolicyForm.lastpremiumdate.day}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>lastpremiumduedate</td>
+                        <td>{{MOCKpolicyForm.lastpremiumduedate.year}}-{{MOCKpolicyForm.lastpremiumduedate.month}}-{{MOCKpolicyForm.lastpremiumduedate.day}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>{{MOCKpolicyForm.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <button type="button" class="btn btn-link" (click)="getConfirmation(false)">Cancel</button>
+        <button type="button" class="btn btn-link" (click)="getConfirmation(true)">Confirm</button>
+    </div>
+
+    <div *ngIf="step === 3 && IsEligible" class="mt-4">
+        <span style="color: green;">{{CompletedResponse.message}}</span>
+        <br>
+        <button type="button" class="btn btn-link" (click)="getConfirmation(false)">Check Again</button>
+    </div>
+
+    <div *ngIf="step === 3 && !IsEligible" class="mt-4">
+        <p><span style="color: red;">{{CompletedResponse.message}} !!</span>
+        </p>
+        <br>
+        <button type="button" class="btn btn-link" (click)="getConfirmation(false)">Check Again</button>
+    </div>
+</div>
