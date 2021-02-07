@@ -16,4 +16,5 @@ export class UserInfo {
     name: string;
     email: string;
     roles: string[];
+    company: string;
 }

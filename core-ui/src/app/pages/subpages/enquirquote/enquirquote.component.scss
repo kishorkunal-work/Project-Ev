@@ -1,3 +1,20 @@
 .enquiryform{
-    padding: 5vh;
+    padding: 1vh;
+}
+
+.group{
+    margin: 0 0 1em 0;
+    border-radius: .9em .9em 0em 0em;
+    border: .05em solid #676b67;
+    background-color: gainsboro;
+}
+
+.group-header{
+    background-color: #676b67;
+    color: white;
+    border-radius: .9em .9em 0em 0em;
+}
+
+.group-content{
+    margin: .1em;
 }

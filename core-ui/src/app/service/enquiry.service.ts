@@ -30,6 +30,8 @@ export class EnquiryService {
       lastpremiumdate: this.getDateFormatForApi(value.lastpremiumdate),
       lastpremiumduedate: this.getDateFormatForApi(value.lastpremiumduedate),
       email: value.email,
+      mobile: value.mobile,
+      name: value.name,
       status: "PENDING"
     };
 
@@ -46,7 +48,12 @@ export class EnquiryService {
   }
 
   getDateFormatForApi(dateValue) {
-    return `${dateValue.year}-${dateValue.month}-${dateValue.day} 00:00:00`
+    if (typeof dateValue === 'string' || dateValue instanceof String) {
+      return `${dateValue} 00:00:00`
+    }
+    else {
+      return `${dateValue.year}-${dateValue.month}-${dateValue.day} 00:00:00`
+    }
   }
 
 

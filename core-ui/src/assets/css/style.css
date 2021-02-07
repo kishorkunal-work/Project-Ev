@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   line-height: 1;
   font-weight: 700;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 #header .logo a {
@@ -2151,4 +2151,9 @@ section {
 
 #footer .credits a:hover {
   color: white;
+}
+
+
+#toast-container > div {
+  opacity:1;
 }

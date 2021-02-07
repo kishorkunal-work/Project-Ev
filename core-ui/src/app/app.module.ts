@@ -19,6 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login/login.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { PolicynumberformComponent } from './pages/subpages/policynumberform/policynumberform.component';
+import { DialogComponent } from './common/dialog/dialog.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ContactComponent } from './pages/contact/contact.component';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +40,10 @@ import { PolicynumberformComponent } from './pages/subpages/policynumberform/pol
     TabsComponent,
     TabComponent,
     LoginComponent,
-    PolicynumberformComponent
+    PolicynumberformComponent,
+    DialogComponent,
+    HomePageComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +52,13 @@ import { PolicynumberformComponent } from './pages/subpages/policynumberform/pol
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
+    BrowserAnimationsModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]

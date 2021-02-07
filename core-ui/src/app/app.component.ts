@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToasterService } from './service/toaster.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'insuranceApp';
+
+  constructor(private toaster: ToasterService) {
+    toaster.showSuccess("1", "2")
+  }
 }

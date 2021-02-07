@@ -15,6 +15,7 @@ exports.signup = (req, res) => {
     lastname: req.body.lastname,
     email: req.body.email,
     mobile: req.body.mobile,
+    company: req.body.company,
     password: bcrypt.hashSync(req.body.password, 8)
   })
     .then(user => {
@@ -73,7 +74,7 @@ exports.signin = (req, res) => {
           authorities.push(roles[i].name.toUpperCase());
         }
 
-        var token = jwt.sign({ id: user.id, user: { name: user.firstname + " " + user.lastname, email: user.email, roles: authorities } }, config.secret, {
+        var token = jwt.sign({ id: user.id, user: { name: user.firstname + " " + user.lastname, email: user.email, roles: authorities, company: user.company } }, config.secret, {
           expiresIn: 86400 // 24 hours
         });
 

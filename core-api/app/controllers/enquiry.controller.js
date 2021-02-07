@@ -1,6 +1,7 @@
 const Enquiry = require("../models/enquiry.model.js");
 const User = require("../models/user.model.js");
 const GoogleApiWrapper = require("../models/googleapi.model.js");
+const mockPolicy = require("../config/mock.data")
 var multer = require('multer');
 
 // Create and Save a new Enquiry
@@ -38,6 +39,20 @@ exports.GetEligibilty = async function (req, res) {
   let EligibilityResponse = await GoogleApiWrapper.GetEligibility(enquiry);
   let IsEligible = EligibilityResponse.data.flag === 1 ? true : false
   res.send({ id: result, data: enquiry, IsEligible, message: EligibilityResponse.data.policyIRR })
+};
+
+exports.GetPolicyDetail = async function (req, res) {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  const policynumber = req.query.policynumber;
+  const company = req.query.company;
+  const policy = mockPolicy.policydata.filter(s => s.PolicyNumber == policynumber && s.Company == company);
+  res.send({ data: policy })
 };
 
 // Find a single Customer with a customerId

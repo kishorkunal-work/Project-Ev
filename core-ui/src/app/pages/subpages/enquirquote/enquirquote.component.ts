@@ -18,6 +18,12 @@ export class EnquirquoteComponent implements OnInit {
   formId: string = "";
   CompletedResponse: any;
 
+  Expand = {
+    personaldetail: true,
+    policydetail: true
+  }
+
+
   constructor(private enquiryService: EnquiryService
     , private el: ElementRef
     , private router: Router
@@ -28,6 +34,13 @@ export class EnquirquoteComponent implements OnInit {
   }
 
   enquiryForm = new FormGroup({
+    'name': new FormControl('customer name', [
+      Validators.required
+    ]),
+    'mobile': new FormControl('1231231231', [
+      Validators.required,
+      Validators.pattern(/^((\\+91-?)|0)?[0-9]{10}$/)
+    ]),
     'productname': new FormControl('pname', [
       Validators.required
     ]),
@@ -114,30 +127,9 @@ export class EnquirquoteComponent implements OnInit {
     this.ngxService.stop();
   }
 
-  // async upload() {
-  //   this.ngxService.start()
-  //   //locate the file element meant for the file upload.
-  //   let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
-  //   //get the total amount of files attached to the file input.
-  //   let fileCount: number = inputEl.files.length;
-  //   //create a new fromdata instance
-  //   let formData = new FormData();
-  //   //check if the filecount is greater than zero, to be sure a file was selected.
-  //   if (fileCount > 0) { // a file was selected
-  //     //append the key name 'photo' with the first file in the element
-  //     formData.append('file', inputEl.files.item(0));
-  //     formData.append('policyid', this.formId);
-  //     //call the angular http method
-  //     var res = await this.enquiryService.uploadFile(formData)
-  //     this.Step = 3
-  //     this.CompletedResponse = res;
-  //   }
-  //   this.ngxService.stop()
-  // }
-
   async goBack() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.navigate(['/registerpolicy']);
+    this.Step = 1;
+    this.IsEligible = false;
   }
 
 }

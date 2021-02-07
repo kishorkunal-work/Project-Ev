@@ -93,7 +93,7 @@ html, body {
     padding: 0;
     line-height: 1;
     font-weight: 700;
-    text-transform: uppercase;
+    // text-transform: uppercase;
   }
   
   #header .logo a {
@@ -2160,3 +2160,7 @@ html, body {
     color: white;
   }
   
+
+  #toast-container > div {
+    opacity:1;
+}

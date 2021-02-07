@@ -14,7 +14,7 @@ const app = express();
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -27,14 +27,14 @@ app.use((req, res, next) => {
   next();
 });
 
-require("./app/routes/customer.routes.js")(app);
+//require("./app/routes/customer.routes.js")(app);
 require("./app/routes/enquiry.routes.js")(app);
 require("./app/routes/user.routes.js")(app);
 
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
 
 const swaggerDocs = swaggerJsDoc(swaggerConfig.swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs, { "showExplorer": true }));
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

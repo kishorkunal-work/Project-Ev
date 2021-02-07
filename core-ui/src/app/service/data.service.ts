@@ -16,6 +16,11 @@ export class DataService {
     return this.httpClient.post(this.REST_API_SERVER + "/GetEligibility", body, { headers }).toPromise();
   }
 
+  fetchPolicy(policynumber: number, company: string) {
+    const headers = { 'x-access-token': this.loginService.User.token, 'Content-Type': 'application/json' };
+    return this.httpClient.get(this.REST_API_SERVER + `/GetPolicyDetail?policynumber=${policynumber}&company=${company}`, { headers }).toPromise();
+  }
+
   uploadFile(formData: FormData) {
     const headers = { 'x-access-token': this.loginService.User.token, 'Content-Type': 'application/json' };
     return this.httpClient.post(this.REST_API_SERVER + "/UploadPolicyFile", formData, { headers }).toPromise();

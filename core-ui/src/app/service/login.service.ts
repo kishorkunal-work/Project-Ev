@@ -4,11 +4,13 @@ import { User } from '../model/user.model';
 import jwt_decode from "jwt-decode";
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToasterService } from './toaster.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
   isAuthenticated() {
     if (this.User && !this.tokenExpired(this.User.token)) {
       return true;
@@ -23,7 +25,7 @@ export class LoginService {
   private _user: User = null;
 
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private toaster: ToasterService) {
   }
 
   get User(): User {
@@ -64,11 +66,17 @@ export class LoginService {
             decoded: jwt_decode(res["accessToken"]),
           }
           this.userSubject.next(this.User);
+          this.toaster.showSuccess("Login Successful !!", `Welcome ${this.User.decoded.user.name}`)
           resolve(true);
         }
       })
     });
     return promise;
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    this.router.navigateByUrl('/login');
   }
 
 

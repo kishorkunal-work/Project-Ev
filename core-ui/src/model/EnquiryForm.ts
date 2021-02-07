@@ -6,6 +6,8 @@ export interface DateModel {
 
 
 export interface EnquiryFormModel {
+    name: string;
+    mobile: string;
     productname: string;
     rcd: string;
     premium: string;
@@ -25,6 +27,8 @@ export interface EnquiryFormModel {
 }
 
 export interface EnquiryFormModelReq {
+    name: string;
+    mobile: string;
     productname: string;
     rcd: string;
     premium: string;

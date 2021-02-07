@@ -1,6 +1,7 @@
 module.exports = {
     swaggerOptions: {
         swaggerDefinition: {
+            openapi: "3.0.1",
             info: {
                 title: "Insurer consumable API",
                 description: "This contains Api Information to be used by insurer.",
@@ -8,20 +9,20 @@ module.exports = {
                     name: "contact us"
                 },
                 servers: ["http://localhost:3000"]
-            }
+            },
+            components: {
+                securitySchemes: {
+                    Bearer: {
+                        type: 'http',
+                        scheme: 'bearer',
+                        bearerFormat: 'JWT',
+                    }
+                }
+            },
+            security: [
+                { Bearer: [] }
+            ]
         },
         apis: ["./app/routes/*.js"]
-    },
-    authAction: {
-        JWT: {
-            name: "JWT",
-            schema: {
-                type: "apiKey",
-                in: "header",
-                name: "x-access-token",
-                description: "Please provide token"
-            },
-            value: "<JWT>"
-        }
     }
 };

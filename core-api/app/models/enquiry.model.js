@@ -33,8 +33,9 @@ Enquiry.create = async function (newEnquiry) {
   } catch (err) {
     //TODO: handle error
   }
-  console.log(result[0].insertId)
-  return result[0].insertId;
+  const insertedId = result && result[0] && result[0].insertId ? result[0].insertId : 0
+  console.log(insertedId)
+  return insertedId;
 };
 
 Enquiry.findById = async function (formId) {
