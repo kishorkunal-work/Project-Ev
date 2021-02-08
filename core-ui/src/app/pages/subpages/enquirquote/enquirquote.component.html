@@ -5,66 +5,6 @@
         <p>Please Enter Details for Eligibility Check.</p>
         <form *ngIf="!IsEligible" [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
             <div class="group">
-                <div class="col-sm-12 col-md-12 group-header" (click)="Expand.personaldetail = !Expand.personaldetail">
-                    Personal Details :<span style="float: right;">
-                        <i *ngIf="Expand.personaldetail" class="fa fa-minus-circle" aria-hidden="true"></i>
-                        <i *ngIf="!Expand.personaldetail" class="fa fa-plus-circle" aria-hidden="true"></i></span>
-                </div>
-                <div class="group-content">
-                    <div class="container">
-                        <div class="form-row" [style.display]="Expand.personaldetail ? 'flex' : 'none'">
-                            <div class="form-group col-sm-12 col-md-4">
-                                <label>Name</label>
-                                <input formControlName="name" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
-                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                                    <div *ngIf="f.name.errors.required">Name required</div>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-12 col-md-3">
-                                <label>Mobile</label>
-                                <input formControlName="mobile" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
-                                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
-                                    <div *ngIf="f.mobile.errors.required">Mobile required</div>
-                                    <div *ngIf="f.mobile.errors.pattern">Mobile is invalid</div>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-12 col-md-3">
-                                <label>Email</label>
-                                <input type="text" formControlName="email" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                    <div *ngIf="f.email.errors.required">Email is required</div>
-                                    <div *ngIf="f.email.errors.pattern">Email is invalid</div>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-sm-12 col-md-3">
-                                <label>DoB</label>
-                                <input type="text" formControlName="dob" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" placeholder="yyyy-mm-dd"
-                                    name="dp1" ngbDatepicker #dob="ngbDatepicker" (click)="dob.toggle()" />
-                                <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
-                                    <div *ngIf="f.dob.errors.required">DoB is required</div>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-sm-12 col-md-3">
-                                <label>Age</label>
-                                <input formControlName="age" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
-                                <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
-                                    <div *ngIf="f.age.errors.required">Age required</div>
-                                    <div *ngIf="f.age.errors.pattern">Age is invalid</div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="group">
                 <div class="col-sm-12 col-md-12 group-header" (click)="Expand.policydetail = !Expand.policydetail">
                     Policy Details :
                     <span style="float: right;">
@@ -177,6 +117,67 @@
                                 <div *ngIf="submitted && f.lastpremiumduedate.errors" class="invalid-feedback">
                                     <div *ngIf="f.lastpremiumduedate.errors.required">Last Premium Due Date is required
                                     </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="col-sm-12 col-md-12 group-header" (click)="Expand.personaldetail = !Expand.personaldetail">
+                    Personal Details :<span style="float: right;">
+                        <i *ngIf="Expand.personaldetail" class="fa fa-minus-circle" aria-hidden="true"></i>
+                        <i *ngIf="!Expand.personaldetail" class="fa fa-plus-circle" aria-hidden="true"></i></span>
+                </div>
+                <div class="group-content">
+                    <div class="container">
+                        <div class="form-row" [style.display]="Expand.personaldetail ? 'flex' : 'none'">
+                            <div class="form-group col-sm-12 col-md-4">
+                                <label>Name</label>
+                                <input formControlName="name" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Name required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-3">
+                                <label>Mobile</label>
+                                <input formControlName="mobile" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.mobile.errors.required">Mobile required</div>
+                                    <div *ngIf="f.mobile.errors.pattern">Mobile is invalid</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-3">
+                                <label>Email</label>
+                                <input type="text" formControlName="email" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.pattern">Email is invalid</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-md-3">
+                                <label>DoB</label>
+                                <input type="text" formControlName="dob" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" placeholder="yyyy-mm-dd"
+                                    name="dp1" ngbDatepicker #dob="ngbDatepicker" (click)="dob.toggle()" />
+                                <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                    <div *ngIf="f.dob.errors.required">DoB is required</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-md-3">
+                                <label>Age</label>
+                                <input formControlName="age" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+                                <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                                    <div *ngIf="f.age.errors.required">Age required</div>
+                                    <div *ngIf="f.age.errors.pattern">Age is invalid</div>
                                 </div>
                             </div>
 

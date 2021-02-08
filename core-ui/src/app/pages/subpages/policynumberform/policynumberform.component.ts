@@ -61,7 +61,7 @@ export class PolicynumberformComponent implements OnInit {
     <dd class="col-sm-8">${this.MOCKpolicyForm.lastpremiumdate}</dd>
     </dl>
     `
-    this.dialogService.confirm('Please confirm..',
+    this.dialogService.confirm('Please confirm the below policy details to proceed further...',
       '',
       html
     )

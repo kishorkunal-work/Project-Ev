@@ -1,10 +1,11 @@
 <div class="container">
     <div *ngIf="step === 1">
         <div class="form-group" style="width:25%">
-            <label>Policy Number <span *ngIf="company" class="label-box">Company
-                    :&nbsp;<strong>{{company}}</strong></span></label>
+            <label>Policy Number </label>
             <input type="number" [(ngModel)]="policynumber" class="form-control" />
         </div>
+        <div *ngIf="company" class="label-box">Company
+            :&nbsp;<strong>{{company}}</strong></div><br>
         <button class="btn btn-warning mr-2" (click)="checkForPolicy()">Fetch</button>
     </div>
 
